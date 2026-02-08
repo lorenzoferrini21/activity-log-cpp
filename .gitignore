@@ -1,0 +1,10 @@
+# Build directories
+cmake-build-*/
+
+# CLion
+.idea/
+
+# Compiled files
+*.o
+*.obj
+*.exe
