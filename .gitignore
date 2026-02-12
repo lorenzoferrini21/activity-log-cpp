@@ -1,10 +1,32 @@
-# Build directories
-cmake-build-*/
+## Build directories
+#cmake-build-*/
+#
+## CLion / Intellij
+#.idea/
+#
+## Compiled files
+#*.o
+#*.obj
+#*.exe
 
-# CLion / Intellij
+# Build folders
+cmake-build-*/
+build/
+
+# CLion / IDE
 .idea/
 
-# Compiled files
+# Logs (keep folder, ignore files)
+dailylog/*.txt
+
+# OS
+*.exe
+*.dll
 *.o
 *.obj
-*.exe
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake

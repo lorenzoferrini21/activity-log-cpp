@@ -3,6 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include "Utils.h"
+#include <chrono>
+#include <ctime>
+#include <iomanip>
 
 
 // Costruttore
@@ -142,3 +145,15 @@ DailyLog DailyLog::loadFromFile(const std::string& filename) {
     return log;
 }
 
+std::string DailyLog::getCurrentDate() {
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+    std::tm local_tm;
+    localtime_s(&local_tm, &now_time); // Windows
+
+    std::ostringstream oss;
+    oss << std::put_time(&local_tm, "%Y-%m-%d");
+
+    return oss.str();
+}

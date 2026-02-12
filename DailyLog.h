@@ -32,6 +32,8 @@ public:
     void saveToFile(const std::string& filename) const;
     static DailyLog loadFromFile(const std::string& filename);
 
+    static std::string getCurrentDate();
+
 private:
     std::string date;                 // Data della giornata, formato "YYYY-MM-DD"
     std::vector<Activity> activities; // Elenco delle attività

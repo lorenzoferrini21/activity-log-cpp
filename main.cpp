@@ -24,7 +24,7 @@ void createFolderIfNotExists(const std::string& folderName) {
 
 int main() {
     // Creiamo un DailyLog
-    DailyLog log("2026-02-06");
+    DailyLog log(DailyLog::getCurrentDate());
 
     // Aggiungiamo attività (NON in ordine apposta)
     log.addActivity(Activity("Palestra", Time(18, 0), Time(20, 30), Category::Sport));
@@ -56,11 +56,11 @@ int main() {
     // SALVATAGGIO FILE AUTOMATICO CON DATA
     // ==================================================
 
+    /*
     std::string projectFolder = "../"; // sale di una cartella dalla build (cmake-build-debug)
     std::string logsFolder = projectFolder + "dailylog";
     createFolderIfNotExists(logsFolder); // crea la cartella se non esiste
 
-    //&createFolderIfNotExists("dailylog"); // crea la cartella dailylog se non esiste
 
     // Otteniamo la data odierna
     auto now = std::chrono::system_clock::now();
@@ -74,6 +74,15 @@ int main() {
                    << ".txt";
 
     std::string filePath = "../dailylog/" + filenameStream.str(); // percorso completo
+     */
+
+    std::string projectFolder = "../";  // usciamo da cmake-build-debug
+    std::string logsFolder = projectFolder + "dailylog";
+
+    createFolderIfNotExists(logsFolder);
+
+// Nome file basato sulla data del log
+    std::string filePath = logsFolder + "/dailylog_" + log.getDate() + ".txt";
 
     // Salvataggio e caricamento
     log.saveToFile(filePath);
