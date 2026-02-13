@@ -6,7 +6,7 @@
 #include <direct.h>
 
 // Utility per creare cartelle
-void createFolderIfNotExists(const std::string& folderName) {
+void NcursesUI::createFolderIfNotExists(const std::string& folderName) {
     struct stat info;
     if (stat(folderName.c_str(), &info) != 0) {
         _mkdir(folderName.c_str());

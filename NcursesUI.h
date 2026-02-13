@@ -19,6 +19,7 @@ public:
     // Loop principale della UI
     void run();
 
+    void static createFolderIfNotExists(const std::string& folderName);
 private:
     DailyLog& log;
 
@@ -32,6 +33,8 @@ private:
     Category stringToCategory(const std::string& str);
 
     void saveDailyLog();
+
+
 };
 
 #endif //ACTIVITY_LOG_CPP_NCURSESUI_H
