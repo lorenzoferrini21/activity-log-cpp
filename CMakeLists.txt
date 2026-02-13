@@ -13,7 +13,11 @@ add_executable(activity_log_cpp
         Activity.cpp
         DailyLog.cpp
         Utils.cpp
+        NcursesUI.cpp
         )
+
+target_link_libraries(activity_log_cpp ncursesw)
+
 
 # =============================
 # Testing

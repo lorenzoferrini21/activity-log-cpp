@@ -1,3 +1,4 @@
+/*
 //
 // Created by User on 06/02/2026.
 //
@@ -56,7 +57,8 @@ int main() {
     // SALVATAGGIO FILE AUTOMATICO CON DATA
     // ==================================================
 
-    /*
+    */
+/*
     std::string projectFolder = "../"; // sale di una cartella dalla build (cmake-build-debug)
     std::string logsFolder = projectFolder + "dailylog";
     createFolderIfNotExists(logsFolder); // crea la cartella se non esiste
@@ -74,7 +76,8 @@ int main() {
                    << ".txt";
 
     std::string filePath = "../dailylog/" + filenameStream.str(); // percorso completo
-     */
+     *//*
+
 
     std::string projectFolder = "../";  // usciamo da cmake-build-debug
     std::string logsFolder = projectFolder + "dailylog";
@@ -91,6 +94,21 @@ int main() {
     DailyLog loaded = DailyLog::loadFromFile(filePath);
     std::cout << "\n=== LOADED FROM FILE ===\n";
     std::cout << loaded.toString() << std::endl;
+
+    return 0;
+}
+*/
+
+
+#include "DailyLog.h"
+#include "NcursesUI.h"
+
+int main() {
+
+    DailyLog log(DailyLog::getCurrentDate());
+
+    NcursesUI ui(log);
+    ui.run();
 
     return 0;
 }
