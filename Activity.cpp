@@ -41,6 +41,7 @@ std::string Activity::toString() const {
            end.toString() + ") " + "tot:" +
            std::to_string(durationMinutes()) + " min";
 }
+//to_string funzione della libreria standard C++: converte numero in stringa
 
 std::string Activity::categoryToString(Category c) {
     switch (c) {

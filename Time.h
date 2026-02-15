@@ -10,6 +10,7 @@ public:
     int getHour() const;
     int getMinute() const;
 
+    //overload
     bool operator<(const Time& other) const;
     bool operator<=(const Time& other) const;
 

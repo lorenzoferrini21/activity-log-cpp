@@ -100,12 +100,25 @@ int main() {
 */
 
 
+#include <sys/stat.h>
 #include "DailyLog.h"
 #include "NcursesUI.h"
 
+
+
 int main() {
 
+    std::string folder = "dailylog";
+    NcursesUI::createFolderIfNotExists(folder);
+    std::string todayFile = folder + "/dailylog_" + DailyLog::getCurrentDate() + ".txt";
+
     DailyLog log(DailyLog::getCurrentDate());
+
+// se il file esiste, carichiamo le attività
+    struct stat buffer;
+    if (stat(todayFile.c_str(), &buffer) == 0) {
+        log = DailyLog::loadFromFile(todayFile);
+    }
 
     NcursesUI ui(log);
     ui.run();

@@ -37,6 +37,10 @@ std::string Time::toString() const {
         << std::setw(2) << std::setfill('0') << minute;
     return oss.str();
 }
+//^^^^^^^^^^^^^^^^
+//È uno stream di output su stringa.
+//È come std::cout, ma invece di stampare su schermo scrive dentro una stringa interna.
+//serve per fare oss.str()
 
 int Time::toMinutes() const {
     return hour * 60 + minute;
