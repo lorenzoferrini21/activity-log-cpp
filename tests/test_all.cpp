@@ -91,6 +91,30 @@ TEST(DailyLogTest, ActivitiesAreSortedChronologically) {
     EXPECT_EQ(gaps[0], 120);
 }
 
+TEST(DailyLogTest, NoOverlap) {
+    DailyLog log("2026-02-07");
+
+    log.addActivity(Activity("A",
+                             Time(8,0),
+                             Time(9,0),
+                             Category::Study));
+
+    log.addActivity(Activity("B",
+                             Time(10,0),
+                             Time(11,0),
+                             Category::Work));
+
+    EXPECT_FALSE(log.hasOverlaps());
+}
+
+TEST(DailyLogTest, EmptyLogHasNoOverlapsOrGaps) {
+    DailyLog log("2026-02-07");
+
+    EXPECT_FALSE(log.hasOverlaps());
+    EXPECT_TRUE(log.getGapsInMinutes().empty());
+}
+
+
 
 TEST(DailyLogTest, SaveAndLoadFromFile) {
     const std::string filename = "test_log.txt";

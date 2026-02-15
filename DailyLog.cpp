@@ -7,11 +7,8 @@
 #include <ctime>
 #include <iomanip>
 
-
-// Costruttore
 DailyLog::DailyLog(const std::string& d) : date(d) {}
 
-// Aggiungi attività
 void DailyLog::addActivity(const Activity& activity) {
     activities.push_back(activity);
     //push_back è un metodo di std::vector
@@ -20,13 +17,10 @@ void DailyLog::addActivity(const Activity& activity) {
               [](const Activity &a, const Activity &b) { return a.getStart() < b.getStart(); });
 }
 
-
-// Restituisci tutte le attività
 const std::vector<Activity>& DailyLog::getActivities() const {
     return activities;
 }
 
-// Restituisci la data
 std::string DailyLog::getDate() const {
     return date;
 }
@@ -39,7 +33,6 @@ std::string DailyLog::toString() const {
     return result;
 }
 
-//ritorna true se ci sono sovrapposizioni di attività
 bool DailyLog::hasOverlaps() const {
     for (size_t i = 1; i < activities.size(); ++i) {
         const Activity& prev = activities[i - 1];
@@ -52,21 +45,24 @@ bool DailyLog::hasOverlaps() const {
     return false;
 }
 
-//serve per capire quanti buchi ci sono e quanto valgono in minuti
 std::vector<int> DailyLog::getGapsInMinutes() const {
     std::vector<int> gaps;
+    if (activities.size() < 2) return gaps;
 
     for (size_t i = 1; i < activities.size(); ++i) {
         int prevEnd = activities[i - 1].getEnd().toMinutes();
         int currStart = activities[i].getStart().toMinutes();
 
-        if (currStart > prevEnd) {
-            gaps.push_back(currStart - prevEnd);
+        int gap = prevEnd - currStart;
+        if (gap > 0) {
+            gaps.push_back(gap);
         }
     }
 
     return gaps;
 }
+
+
 int DailyLog::totalGapTime() const {
     int total = 0;
     for (int g : getGapsInMinutes())
